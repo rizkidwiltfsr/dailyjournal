@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="container " style="height: 600px;">
         <div class=" justify-content-center align-items-center" style="min-height: 100vh;">
           <form class="form-horizontal" action="login.php" method="post" >
-          <h2 style="text-align: center"><strong>WELCOME BACK</strong></h2>
+          <h2 style="text-align: center"><strong>WELCOME TO MY DAILY JOURNAL</strong></h2>
           <h4 style="text-align: center"><strong>Please Log In Here!</strong></h4><br>
             <div class="form-group ">
               <label class="control-label col-sm-3 " for="nama">Nama :   </label>
