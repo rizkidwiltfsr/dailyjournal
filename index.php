@@ -30,7 +30,7 @@ include "koneksi.php";
               <a class="nav-link" href="#gallery">Gallery</a>
               <a class="nav-link" href="#schedule">Schedule</a>
               <a class="nav-link" href="#profile">Profile</a>
-              <a class="nav-link" href="logout.php">Logout</a>
+              <a class="nav-link" href="logout.php">Login</a>
             </div>
           </div>
         </div>
