@@ -233,7 +233,7 @@ include "koneksi.php";
       <div class="container p-5">
         <h3><strong>Profil Mahasiswa</strong></h3>
       <div class="d-md-flex flex-md-row align-items-center p-5 justify-content">
-        <img class="img-fluid" src="img/sy.jpg" alt="foto" width="300" style="border-radius: 50%;">
+        <img class="img-fluid" src="img/sy.jpg" alt="foto" width="400" style="border-radius: 50%;">
         <table class="table table-borderless">
           <thead>
             <tr>
