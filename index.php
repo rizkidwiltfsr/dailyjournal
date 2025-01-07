@@ -17,7 +17,7 @@ include "koneksi.php";
     
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" navbar bg-dark border-bottom border-body data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" navbar bg-dark border-bottom border-body data-bs-theme="light">
       <div class="container-fluid">
         <a class="navbar-brand">My Daily Journal</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,14 +35,16 @@ include "koneksi.php";
           </div>
         </div>
       </nav>
-      <section id="hero" class="text-center p-5 bg-light text-sm-start">
-        <div class="container p-5">
-          <div class="d-md-flex flex-md-row-reverse align-items-center p-5">
-              <img class="img-fluid" src="img/music.png" alt="music" width="300"> 
-              <div>
-                  <h1 class="fw-bold display-4">Hey there, friend! Welcome!</h1>
-                  <h4 class="lead display-6">Let see my fav playlist disini anda akan menemukan sebuah playlist yang akan membuat kamu bersemangat</h4>
-              </div>
+      <section id="hero" class="text-center bg-dark text-sm-start">
+        <div class="container">
+          <div class="d-md-flex flex-md-row-reverse align-items-center">
+            <div style="flex-grow: 1; margin-right: 1px">
+              <img class="img-fluid" src="img/music.png" alt="music" style="width: 100%; height: 600px; object-fit: cover;">
+            </div>
+            <div style="color: white;">
+              <h1 class="fw-bold display-4">Hey there, friend! Welcome!</h1>
+              <h4 class="lead display-6">Let see my fav playlist disini anda akan menemukan sebuah playlist yang akan membuat kamu bersemangat</h4>
+            </div>
           </div>
         </div>
       </section>
@@ -83,18 +85,28 @@ include "koneksi.php";
     </section>
     <!-- article end -->
      
-    <section id="gallery" class="text-center p-5 bg-light">
+    <!-- Gallery begin -->
+    <section id="gallery" class="text-center p-5 bg-black">
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://cdn.rri.co.id/berita/1/images/1693211258996-IMG-20230828-WA0002/1693211258996-IMG-20230828-WA0002.jpg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://froyonion.sgp1.digitaloceanspaces.com/images/blogthumbnail/03d8121cfad021a2c3df62e20bf8e863aa4fd823.jpg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://imgx.parapuan.co/crop/0x0:0x0/x/photo/2021/07/22/5e94f4760d708jpg-20210722013927.jpg" class="d-block w-100" alt="...">
-          </div>
+          <?php
+          include "koneksi.php";
+
+          $sql = "SELECT * FROM gallery";
+          $hasil = $conn->query($sql);
+
+          $active = true; 
+          while($row = $hasil->fetch_assoc()){
+            if ($row["gallery"] != '' && file_exists('img/' . $row["gallery"])) {
+          ?>
+            <div class="carousel-item <?= $active ? 'active' : '' ?>">
+            <img src="img/<?= $row["gallery"]?>" class="d-block w-100" alt="<?= $row["judul"]?>">
+            </div>
+          <?php
+              $active = false;
+            }
+          }
+          ?>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -106,16 +118,17 @@ include "koneksi.php";
         </button>
       </div>
     </section>
+    <!-- Gallery end -->
 
-    <section id="schedule" class="text-center p-5 bg-dark"> 
-      <h3 class="text-white">Jadwal Kuliah & Kegiatan Mahasiswa</h3>
+    <section id="schedule" class="text-center p-5 bg-light"> 
+      <h3 class="text-dark">Jadwal Kuliah & Kegiatan Mahasiswa</h3>
         <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-start">  
           <div class="col p-5">
-              <div class="card h-100">
-                <div class="card-header bg-primary">
-                    <h5 class="card-title">Senin</h5>
+              <div class="card h-100" style="border: 2px color : dark;">
+                <div class="card-header bg-dark">
+                    <h5 class="card-title" style="color: white;">Senin</h5>
                   </div>
-                <div class="card-body p-4">
+                <div class="card-body p-4" style="color: dark;">
                     <p class="card-text">
                         <strong>09.00 - 10.30</strong><br>
                         Basis Data
@@ -129,12 +142,12 @@ include "koneksi.php";
               </div>
             </div>
             <div class="col p-5">
-                <div class="card h-100">
-                  <div class="card-header bg-success">
-                      <h5 class="card-title">Selasa</h5>
+                <div class="card h-100" style="border: 2px solid #191970;">
+                  <div class="card-header" style="background-color: #191970;">
+                      <h5 class="card-title" style="color: white;">Selasa</h5>
                     </div>
                   <div class="card-body p-4">
-                      <p class="card-text">
+                      <p class="card-text" style="color: dark;">
                         <strong>08.00 - 09.30</strong><br>
                         Pemrograman Berbasis Web
                         Ruang D.2.J<br> 
@@ -147,9 +160,9 @@ include "koneksi.php";
                 </div>
             </div>
               <div class="col p-5" >
-                <div class="card h-100">
-                  <div class="card-header bg-danger">
-                      <h5 class="card-title">Rabu</h5>
+                <div class="card h-100" style="border: 2px solid #2F4F4F;">
+                  <div class="card-header" style="background-color: #2F4F4F">
+                      <h5 class="card-title" style="color: white;">Rabu</h5>
                     </div>
                   <div class="card-body p-5">
                       <p class="card-text">
@@ -165,7 +178,7 @@ include "koneksi.php";
                 </div>
               </div>
               <div class="col p-5">
-                <div class="card h-100">
+                <div class="card h-100" style="border: 2px solid #2F4F4F;">
                   <div class="card-header bg-warning">
                       <h5 class="card-title">Kamis</h5>
                     </div>
@@ -183,7 +196,7 @@ include "koneksi.php";
                 </div>
               </div>
               <div class="col p-5">
-                <div class="card h-100">
+                <div class="card h-100" style="border: 2px solid #2F4F4F;">
                   <div class="card-header bg-info">
                       <h5 class="card-title">Jumat</h5>
                     </div>
@@ -201,9 +214,9 @@ include "koneksi.php";
                 </div>
               </div>
               <div class="col p-5">
-                <div class="card h-100">
-                  <div class="card-header bg-dark-subtle">
-                      <h5 class="card-title">Sabtu</h5>
+                <div class="card h-100" style="border: 2px solid #8B0000;">
+                  <div class="card-header" style="background-color: #8B0000">
+                      <h5 class="card-title" style="color: white;">Sabtu</h5>
                     </div>
                   <div class="card-body p-5">
                       <p class="card-text ">
@@ -216,9 +229,9 @@ include "koneksi.php";
                 </div>
               </div>
               <div class="col p-5">
-                <div class="card h-100">
+                <div class="card h-100" style="border: 2px color : grey;">
                   <div class="card-header bg-secondary">
-                      <h5 class="card-title">Minggu</h5>
+                      <h5 class="card-title" style="color: white;">Minggu</h5>
                     </div>
                   <div class="card-body p-5">
                       <p class="card-text">
@@ -229,45 +242,24 @@ include "koneksi.php";
               </div>
         </div>
     </section>
-    <section id="profile" class="text-center p-5 bg-light">
-      <div class="container p-5">
-        <h3><strong>Profil Mahasiswa</strong></h3>
-      <div class="d-md-flex flex-md-row align-items-center p-5 justify-content">
-        <img class="img-fluid" src="img/sy.jpg" alt="foto" width="400" style="border-radius: 50%;">
-        <table class="table table-borderless">
-          <thead>
-            <tr>
-              <th colspan="2" align="center">Rizki Dwi Latifasari</th>
-            </tr>
-            <tr>
-              <td colspan="2" align="center">Mahasiswa Teknik Informatika</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-end">NIM :</td>
-              <td class="text-start">A11.2023.15081</td>
-            </tr>
-            <tr>
-              <td class="text-end">Program Studi :</td>
-              <td class="text-start">Teknik Informatika</td>
-            </tr>
-            <tr>
-              <td class="text-end">Email :</td>
-              <td class="text-start">111202315081@mhs.ac.id</td>
-            </tr>
-            <tr>
-              <td class="text-end">Telepon :</td>
-              <td class="text-start">Teknik Informatika</td>
-            </tr>
-            <tr>
-              <td class="text-end">Alamat :</td>
-              <td class="text-start">Jl.Bima 1, No.65, pendrikan kidul</td>
-            </tr>
-          </tbody>
-        </table>
+    <section id="profile" class="text-center p-5 bg-black text-sm-start">
+      <div class="container p-3">
+        <div class="d-md-flex flex-md-row-reverse align-items-center">
+        <div style="flex-grow: 1; margin-right: 1px">
+        <img class="img-fluid" src="img/sy.png" alt="foto" style="width: 100%; height: 600px; object-fit: cover;">
+        </div>
+          <div style="margin-left: 20px;">
+            <h1 class="fw-bold display-4" style="color: white;">My Name is Rizki Dwi Latifasari</h1>
+            <h5 class="lead display-7" style="color: grey;">NIM : A11.2023.15081</h5>
+            <h5 class="lead display-7" style="color: grey;">Program Studi : Teknik Informatika</h5>
+            <h5 class="lead display-7" style="color: grey;">Email: 111202315081@mhs.dinus.ac.id</h5>
+            <h5 class="lead display-7" style="color: grey;">Telepon: +6288-200-759-8677</h5>          
+          </div>
+          </div>
+        </div>
       </div>
     </section>
+
 
     <footer class="justify-content-center bg-dark align-item-center text-center p-2">
       <div>

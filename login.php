@@ -5,10 +5,10 @@ session_start();  // Memulai session atau melanjutkan session yang sudah ada
 include "koneksi.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $username = $_POST['user'];
+  $username = $_POST['username'];
   
   //menggunakan fungsi enkripsi md5 supaya sama dengan password  yang tersimpan di database
-  $password = md5($_POST['pass']);
+  $password = md5($_POST['password']);
 
 	//prepared statement
   $stmt = $conn->prepare("SELECT username 
@@ -75,15 +75,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-3" for="user">Username :</label>
+              <label class="control-label col-sm-3" for="username">Username :</label>
               <div class="col-sm-6">
-                <input type="text" class="form-control" id="user" name="user" placeholder="Enter Username">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-sm-3" for="pass">Password :</label>
+              <label class="control-label col-sm-3" for="password">Password :</label>
               <div class="col-sm-6">
-                <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter password">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
               </div>
             </div>
             <div class="form-group d-flex justify-content-center">
@@ -98,8 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php
                           if ($_GET['error'] == 'invalid_password') {
                             echo "Incorrect password!";
-                          } elseif ($_GET['error'] == 'user_not_found') {
-                            echo "User not found!";
+                          } elseif ($_GET['error'] == 'username_not_found') {
+                            echo "Username not found!";
                           }
                         ?>
                       </div>
