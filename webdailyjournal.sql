@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2024 at 02:33 PM
+-- Generation Time: Jan 07, 2025 at 03:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,6 +51,31 @@ INSERT INTO `article` (`id`, `judul`, `isi`, `gambar`, `tanggal`, `username`) VA
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `gallery`
+--
+
+CREATE TABLE `gallery` (
+  `id` int(11) NOT NULL,
+  `gallery` text NOT NULL,
+  `username` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `gallery`, `username`) VALUES
+(1, 'baskara.jpeg', 'admin'),
+(2, 'lisa.jpeg', 'admin'),
+(3, 'gtw.jpeg', 'admin'),
+(4, 'merelakan.jpeg', 'admin'),
+(5, 'neckdeep.jpeg', 'admin'),
+(6, 'hindia.jpeg', 'admin'),
+(7, 'adele.jpeg', 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -66,7 +91,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `foto`) VALUES
-(1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', '');
+(1, 'admin', '1f32aa4c9a1d2ea010adcf2348166a04', '20250107211238.png'),
+(10, 'rizki', 'f07f59e142fca10d33c4de49a4338a74', '20250107211156.png'),
+(11, 'latifa', 'a53a6e74b31ebf0ad5b10f2b1ffaf991', '20250107211139.png'),
+(12, 'kay ', 'b3e5cfc65dbaf2076eb3b8b0bb5815db', '20250107211123.png'),
+(13, 'rizki123', '0a4b4f867dcdac5c922a1b5c31a15a2b', '20250107211058.jpg'),
+(14, 'bagus', 'dcd6260640e58eab34ede20a44581304', '20250107211044.jpg'),
+(15, 'dwi', 'd72ebd250a4cbbe3d4888663db886346', '20250107211017.jpg');
 
 --
 -- Indexes for dumped tables
@@ -77,6 +108,12 @@ INSERT INTO `user` (`id`, `username`, `password`, `foto`) VALUES
 --
 ALTER TABLE `article`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
 -- Indexes for table `user`
@@ -92,13 +129,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
